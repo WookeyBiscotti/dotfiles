@@ -29,6 +29,7 @@
        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
        "format": "{:%H:%M:%S  %d-%m-%Y}",
        "interval": 1,
+       "on-click": "pkill gnome-calendar || gnome-calendar",
        "calendar": {
             "mode"          : "year",
             "mode-mon-col"  : 3,
