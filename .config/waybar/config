@@ -2,7 +2,7 @@
     "layer": "top", 
 
     "modules-left": ["hyprland/workspaces",  "hyprland/window"],
-    "modules-center": ["clock", "idle_inhibitor"],
+    "modules-center": ["clock"],
     "modules-right": ["tray", "custom/scratchpad-indicator", "pulseaudio", "network", "custom/power"],
 
     "sway/mode": {
@@ -12,14 +12,6 @@
         "format-ethernet": "⟱:{bandwidthDownBytes}, ⟰:{bandwidthUpBytes}",
         "on-click": "kitty -e 'nmtui'",
         "interval": 1
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        },
-	"on-click": "bash /home/dg/.local/bin/toggleRemote"
     },
     "tray": {
         "icon-size": 15,
@@ -62,10 +54,10 @@
         },
         "on-click": "pkill pavucontrol || pavucontrol"
     },
-	"custom/power": {
-		"format": " ",
-		"on-click": "swaynag -t warning -m 'Power Menu Options' -b 'Logout' 'swaymsg exit' -b 'Restart' 'shutdown -r now' -b 'Shutdown'  'shutdown -h now' --background=#005566 --button-background=#009999 --button-border=#002b33 --border-bottom=#002b33"
-	},
+    "custom/power": {
+		"format": " ", 
+		"on-click": "~/.config/rofi/applets/bin/powermenu.sh"
+    },
     "custom/scratchpad-indicator": {
         "format-text": "{}hi",
         "return-type": "json",
@@ -80,8 +72,8 @@
         "separate-outputs": true
     },
     "hyprland/submap": {
-    "format": "✌️ {}",
-    "max-length": 8,
-    "tooltip": false
-}
+        "format": "✌️ {}",
+        "max-length": 8,
+        "tooltip": false
+    }
 }
