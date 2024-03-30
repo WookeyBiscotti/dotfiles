@@ -3,7 +3,7 @@
 
     "modules-left": ["hyprland/workspaces",  "hyprland/window"],
     "modules-center": ["clock"],
-    "modules-right": ["tray", "custom/scratchpad-indicator", "pulseaudio", "network", "custom/power"],
+    "modules-right": ["network", "temperature#cpu", "temperature#gpu", "tray", "custom/scratchpad-indicator", "pulseaudio", "custom/power"],
 
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
@@ -75,5 +75,21 @@
         "format": "✌️ {}",
         "max-length": 8,
         "tooltip": false
-    }
+    },
+    "temperature#cpu": {
+		// "thermal-zone": 1,
+		"hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+		"critical-threshold": 80,
+		// "format-critical": "{temperatureC}°C ",
+		"format": "CPU:{temperatureC}°C ",
+		"interval": 1
+	},
+	"temperature#gpu": {
+		// "thermal-zone": 1,
+		"hwmon-path": "/sys/class/hwmon/hwmon2/temp3_input",
+		"critical-threshold": 80,
+		// "format-critical": "{temperatureC}°C ",
+		"format": "GPU:{temperatureC}°C ",
+		"interval": 1
+	}
 }
