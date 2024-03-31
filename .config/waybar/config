@@ -1,16 +1,17 @@
 {
     "layer": "top", 
 
-    "modules-left": ["hyprland/workspaces",  "hyprland/window"],
+    "modules-left": ["hyprland/workspaces",  "hyprland/window", "hyprland/submap"],
     "modules-center": ["clock"],
-    "modules-right": ["network", "temperature#cpu", "temperature#gpu", "tray", "custom/scratchpad-indicator", "pulseaudio", "custom/power"],
+    "modules-right": ["hyprland/language", "network", "cpu", "disk", "temperature#cpu", "temperature#gpu", "custom/scratchpad-indicator", "tray", "pulseaudio", "custom/power"],
 
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
+"hyprland/submap": {
+	"format": "✌️ {}",
+	"max-length": 8,
+	"tooltip": false
+},
     "network": {
-        "format-ethernet": "⟱:{bandwidthDownBytes}, ⟰:{bandwidthUpBytes}",
-        "on-click": "kitty -e 'nmtui'",
+        "format-ethernet": "🌐 ⟱:{bandwidthDownBytes}, ⟰:{bandwidthUpBytes}",
         "interval": 1
     },
     "tray": {
@@ -28,16 +29,16 @@
             "on-scroll"     : 1,
             "on-click-right": "mode",
             "format": {
-                      "months":     "<span color='#ffead3'><b>{}</b></span>",
-                      "days":       "<span color='#ecc6d9'><b>{}</b></span>",
-                      "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
-                      "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
-                      "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+		                  "months":     "<span color='#ffead3'><b>{}</b></span>",
+		                  "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+		                  "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+		                  "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+		                  "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
                       }
             },
     },
     "pulseaudio": {
-        "format": "{volume}% {icon} ",
+        "format": "{icon} {volume}%",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
         "format-muted": "0% {icon} ",
@@ -55,41 +56,33 @@
         "on-click": "pkill pavucontrol || pavucontrol"
     },
     "custom/power": {
-		"format": " ", 
+		"format": "", 
 		"on-click": "~/.config/rofi/applets/bin/powermenu.sh"
     },
-    "custom/scratchpad-indicator": {
-        "format-text": "{}hi",
-        "return-type": "json",
-        "interval": 3,
-        "exec": "~/.local/bin/scratchpad-indicator 2> /dev/null",
-        "exec-if": "exit 0",
-        "on-click": "swaymsg 'scratchpad show'",
-        "on-click-right": "swaymsg 'move scratchpad'"
-    },
     "hyprland/window": {
-        "max-length": 200,
+        "max-length": 100,
         "separate-outputs": true
     },
-    "hyprland/submap": {
-        "format": "✌️ {}",
-        "max-length": 8,
-        "tooltip": false
-    },
     "temperature#cpu": {
-		// "thermal-zone": 1,
 		"hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
 		"critical-threshold": 80,
-		// "format-critical": "{temperatureC}°C ",
-		"format": "CPU:{temperatureC}°C ",
+		"format": " CPU:{temperatureC}°C",
 		"interval": 1
 	},
 	"temperature#gpu": {
-		// "thermal-zone": 1,
 		"hwmon-path": "/sys/class/hwmon/hwmon2/temp3_input",
 		"critical-threshold": 80,
-		// "format-critical": "{temperatureC}°C ",
-		"format": "GPU:{temperatureC}°C ",
+		"format": " GPU:{temperatureC}°C",
 		"interval": 1
+	},
+	"disk": {
+		"interval": 60,
+		"format": "🖴 {used}/{total}",
+		"path": "/"
+	},
+	"cpu": {
+		"interval": 1,
+		"format": " {}%",
+		"max-length": 10
 	}
 }
