@@ -1,0 +1,51 @@
+(defwindow mainbar
+  :exclusive true
+  :monitor 0
+  :windowtype "dock"
+  :stacking "bg"
+  :geometry (geometry :x "0%"
+    :y "0%"
+    :width "100%"
+    :height "20px"
+  :anchor "top center")
+  (mainbar)
+)
+
+(defpoll time :interval "1s" `date +'{"time":"%H:%M:%S","date":"%d-%m-%Y"}'`)
+
+(defpoll pamixer :interval "1s" `pamixer --get-volume`)
+
+(deflisten volume `rdmd /home/alex/.config/eww/listen_volume_change.d`)
+
+(deflisten vnstat :initial "" `vnstat -l --json`)
+
+
+(defwidget mainbar []
+  (box :halign "fill"
+    (box :halign "end" :space-evenly false)
+    (box :halign "center" :space-evenly false
+      (label :class "clock" :text "${time.time}  ${time.date}" :halign "center" :space-evenly false)
+      (systray :class "tray")
+      (button :class "wallpaper_btn" :onclick "~/.config/waybar/swww_random_image.d"
+        (label :text "🖻 ↺")
+      )
+      (eventbox
+        :onscroll "~/.config/eww/change_volume.d {}"
+        (overlay
+          (label :class "power_btn" :text " ${volume.val}")
+        )
+      )
+      (button :class "power_btn" :onclick "~/.config/rofi/applets/bin/powermenu.sh"
+        (label :text "")
+      )
+    )
+    (box :halign "end" :space-evenly false
+      (label :class "network" :text "🌐 ⟱:${vnstat.rx.ratestring}, ⟰:${vnstat.tx.ratestring}")
+      (label :class "memory" :text " ${round(EWW_RAM.used_mem_perc, 2)}%")
+      (label :class "cpu" :text " ${round(EWW_CPU.avg, 2)}%")
+      (label :class "disk" :text "🖴 ${round(EWW_DISK["/"].used/(1024*1024*1024), 2)}GiB/${round(EWW_DISK["/"].total/(1024*1024*1024), 2)}GiB")
+      (label :class "temperature_cpu" :text " CPU:${EWW_TEMPS.K10TEMP_TCCD1}°C")
+      (label :class "temperature_gpu" :text " CPU:${EWW_TEMPS.AMDGPU_MEM}°C")
+    )
+  )
+)
