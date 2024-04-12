@@ -36,7 +36,7 @@ struct Workspace
 
 string renderToYuck(ref Workspace[] ws)
 {
-    string res = `(box :halign "center" :valign "center" `;
+    string res = `(box :halign "center" :valign "center" :class "workspaces"`;
     foreach (w; ws)
     {
         res ~= w.renderToYuck();

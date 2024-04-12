@@ -29,7 +29,7 @@
       (box :class "workspaces" :space-evenly false :halign "start" :valign "center" (literal :content workspaces))
       (label :class "window" :text "${hypr_aw.active_window}" :halign "center")
     )
-    (box :halign "center" :space-evenly false :valign "center"
+    (box :space-evenly false :valign "center" :halign "center"
       (label :class "clock" :text "${time.time}  ${time.date}" :halign "center")
       (systray :class "tray")
       (button :class "wallpaper_btn" :onclick "~/.config/waybar/swww_random_image.d" :timeout "10000ms"
@@ -46,7 +46,7 @@
         (label :text "")
       )
     )
-    (box :halign "end" :space-evenly false :valign "center"
+    (box :space-evenly false :halign "end" :valign "center"
       (label :class "network" :text "🌐 ⟱:${vnstat.rx.ratestring}, ⟰:${vnstat.tx.ratestring}")
       (label :class "memory" :text " ${round(EWW_RAM.used_mem_perc, 2)}%")
       (label :class "cpu" :text " ${round(EWW_CPU.avg, 2)}%")
