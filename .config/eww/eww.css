@@ -13,10 +13,10 @@
 }
 
 .mainbar {
-    background: shade(alpha(@borders, 0.2), 1.25);
     border-width: 1;
     border-color: #ffffff;
     border: solid;
+    background: rgba(0, 0, 0, 0.1);
 }
 
 .power_btn {
@@ -119,4 +119,69 @@
     margin-bottom: 0px;
     transition: none;
     background: #09445a;
+}
+
+.window {
+    margin-top: 3px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    transition: none;
+    background: #210854;
+}
+
+.pulseaudio {
+    margin-top: 3px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    transition: none;
+    background: #8a3d10;
+}
+
+.workspace {
+    margin-top: 3px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    background: #46095a;
+}
+
+.workspaces {
+    margin-top: 3px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    background: #2d0b38;
+}
+
+.active_workspace {
+    margin-top: 3px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    background: #686396;
+    border-width: 2;
+    border-color: #ffffff;
+    border: solid;
+}
+
+.workspace_windows {
+    border-radius: 5;
+    font-family: "Ubuntu";
+    font-size: 10px;
+    min-height: 1px;
+    font-weight: bold;
+    opacity: 1;
+    color: #B5E8E0;
+    margin-top: 0px;
+    margin-bottom: 8px;
+    margin-left: 25px;
+    margin-right: 0px;
+    background: rgba(100, 100, 100, 1.5)
 }

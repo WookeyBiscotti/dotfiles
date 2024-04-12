@@ -2,7 +2,7 @@
   :exclusive true
   :monitor 0
   :windowtype "dock"
-  :stacking "bg"
+  :stacking "fg"
   :geometry (geometry :x "0%"
     :y "0%"
     :width "100%"
@@ -15,31 +15,38 @@
 
 (defpoll pamixer :interval "1s" `pamixer --get-volume`)
 
-(deflisten volume `rdmd /home/alex/.config/eww/listen_volume_change.d`)
+(deflisten volume `/home/alex/.config/eww/listen_volume_change.d`)
+
+(deflisten hypr_aw `/home/alex/.config/eww/listen_hypr_active_window.d`)
 
 (deflisten vnstat :initial "" `vnstat -l --json`)
 
+(deflisten workspaces `/home/alex/.config/eww/listen_hypr_workspaces.d`)
 
 (defwidget mainbar []
   (box :halign "fill"
-    (box :halign "end" :space-evenly false)
-    (box :halign "center" :space-evenly false
-      (label :class "clock" :text "${time.time}  ${time.date}" :halign "center" :space-evenly false)
+    (box :halign "start" :space-evenly false :valign "center"
+      (box :class "workspaces" :space-evenly false :halign "start" :valign "center" (literal :content workspaces))
+      (label :class "window" :text "${hypr_aw.active_window}" :halign "center")
+    )
+    (box :halign "center" :space-evenly false :valign "center"
+      (label :class "clock" :text "${time.time}  ${time.date}" :halign "center")
       (systray :class "tray")
-      (button :class "wallpaper_btn" :onclick "~/.config/waybar/swww_random_image.d"
+      (button :class "wallpaper_btn" :onclick "~/.config/waybar/swww_random_image.d" :timeout "10000ms"
         (label :text "🖻 ↺")
       )
       (eventbox
         :onscroll "~/.config/eww/change_volume.d {}"
+        :timeout "10000ms"
         (overlay
-          (label :class "power_btn" :text " ${volume.val}")
+          (label :class "pulseaudio" :text " ${volume.val}")
         )
       )
-      (button :class "power_btn" :onclick "~/.config/rofi/applets/bin/powermenu.sh"
+      (button :class "power_btn" :onclick "~/.config/rofi/applets/bin/powermenu.sh" :timeout "10000ms"
         (label :text "")
       )
     )
-    (box :halign "end" :space-evenly false
+    (box :halign "end" :space-evenly false :valign "center"
       (label :class "network" :text "🌐 ⟱:${vnstat.rx.ratestring}, ⟰:${vnstat.tx.ratestring}")
       (label :class "memory" :text " ${round(EWW_RAM.used_mem_perc, 2)}%")
       (label :class "cpu" :text " ${round(EWW_CPU.avg, 2)}%")
