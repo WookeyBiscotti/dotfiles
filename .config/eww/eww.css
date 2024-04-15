@@ -1,11 +1,13 @@
 * {
     border-radius: 14;
+    border-width: 0;
     font-family: "Ubuntu";
     font-size: 14px;
     font-weight: bold;
     color: #B5E8E0;
     margin: 0px 5px 0px 5px;
     padding: 1px 5px 1px 5px;
+    text-shadow: 3px 3px 2px rgb(22, 22, 22);
 }
 
 .mainbar {
@@ -53,7 +55,7 @@
 }
 
 .clock {
-    background: #081250;
+    background: #0c1b77;
 }
 
 .wallpaper_btn {
@@ -99,4 +101,46 @@
     color: #B5E8E0;
     margin: 0px 0px 8px 25px;
     background: rgba(0, 0, 0, 0.5)
+}
+
+.powermenu {
+    border-width: 2;
+    border-color: #ffffff;
+    border: solid;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.powermenu_hibernate {
+    border-width: 0;
+    background: #4b2121;
+    color: #f8f8f8;
+    border-radius: 30;
+}
+
+.powermenu_turnoff {
+    border-width: 0;
+    background: #46401f;
+    color: #f8f8f8;
+    border-radius: 30;
+}
+
+.powermenu_reboot {
+    border-width: 0;
+    background: #214b27;
+    color: #f8f8f8;
+    border-radius: 30;
+}
+
+.powermenu_logout {
+    border-width: 0;
+    background: #222a4d;
+    color: #f8f8f8;
+    border-radius: 30;
+}
+
+.powermenu_exit {
+    border-width: 0;
+    background: #272727;
+    color: #f8f8f8;
+    border-radius: 30;
 }

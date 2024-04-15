@@ -25,12 +25,15 @@
 
 (defwidget mainbar []
   (box :halign "fill"
-    (box :halign "start" :space-evenly false :valign "center"
+    (box :space-evenly false :halign "start" :valign "center"
       (box :class "workspaces" :space-evenly false :halign "start" :valign "center" (literal :content workspaces))
       (label :class "window" :text "${hypr_aw.active_window}" :halign "center")
     )
     (box :space-evenly false :valign "center" :halign "center"
-      (label :class "clock" :text "${time.time}  ${time.date}" :halign "center")
+      (button :class "clock"
+        :onclick "pkill gnome-calendar || gnome-calendar" :timeout "10000ms"
+        (label  :text "${time.time}  ${time.date}")
+      )
       (systray :class "tray")
       (button :class "wallpaper_btn" :onclick "~/.config/waybar/swww_random_image.d" :timeout "10000ms"
         (label :text "🖻 ↺")
@@ -42,17 +45,70 @@
           (label :class "pulseaudio" :text " ${volume.val}")
         )
       )
-      (button :class "power_btn" :onclick "~/.config/rofi/applets/bin/powermenu.sh" :timeout "10000ms"
+      (button :class "power_btn" :onclick "/home/alex/code/eww/target/release/eww open --toggle powermenu" :timeout "10000ms"
         (label :text "")
       )
     )
     (box :space-evenly false :halign "end" :valign "center"
-      (label :class "network" :text "🌐 ⟱:${vnstat.rx.ratestring}, ⟰:${vnstat.tx.ratestring}")
+      (label :class "network" :text :hexpand true  "🌐 ⟱:${vnstat.rx.ratestring}, ⟰:${vnstat.tx.ratestring}")
       (label :class "memory" :text " ${round(EWW_RAM.used_mem_perc, 2)}%")
       (label :class "cpu" :text " ${round(EWW_CPU.avg, 2)}%")
       (label :class "disk" :text "🖴 ${round(EWW_DISK["/"].used/(1024*1024*1024), 2)}GiB/${round(EWW_DISK["/"].total/(1024*1024*1024), 2)}GiB")
       (label :class "temperature_cpu" :text " CPU:${EWW_TEMPS.K10TEMP_TCCD1}°C")
       (label :class "temperature_gpu" :text " CPU:${EWW_TEMPS.AMDGPU_MEM}°C")
+    )
+  )
+)
+
+(defwindow powermenu
+  :exclusive false
+  :monitor 0
+  :windowtype "dialog"
+  :stacking "overlay"
+  :geometry (geometry :x "45%"
+    :y "0%"
+    :width "10%"
+    :height "10%"
+  :anchor "top center")
+  (powermenu)
+)
+
+(defwidget powermenu []
+  (box :halign "center" :valign "center" :class "powermenu"
+    (button :class "powermenu_hibernate"
+      :onclick "systemctl hybrid-sleep"
+      (box :orientation "v"
+        (label :text "Hibernate")
+        (label :text "⏾")
+      )
+    )
+    (button :class "powermenu_turnoff"
+      :onclick "systemctl poweroff"
+      (box :orientation "v"
+        (label :text "Turn off")
+        (label :text "⏻")
+      )
+    )
+    (button :class "powermenu_reboot"
+      :onclick "systemctl reboot"
+      (box :orientation "v"
+        (label :text "Reboot")
+        (label :text "↺")
+      )
+    )
+    (button :class "powermenu_logout"
+      :onclick "hyprctl dispatch exit"
+      (box :orientation "v"
+        (label :text "Logout")
+        (label :text "⏎")
+      )
+    )
+    (button :class "powermenu_exit"
+      :onclick "/home/alex/code/eww/target/release/eww open --toggle powermenu"
+      (box :orientation "v"
+        (label :text "Close")
+        (label :text "🗙")
+      )
     )
   )
 )
