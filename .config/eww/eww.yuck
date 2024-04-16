@@ -6,11 +6,11 @@
   :geometry (geometry :x "0%"
     :y "0%"
     :width "100%"
-    :height "20px"
+    :height "11px"
   :anchor "top center")
   (mainbar)
 )
-
+                                  
 (defpoll time :interval "1s" `date +'{"time":"%H:%M:%S","date":"%d-%m-%Y"}'`)
 
 (defpoll pamixer :interval "1s" `pamixer --get-volume`)
@@ -25,7 +25,7 @@
 
 (defwidget mainbar []
   (box :halign "fill"
-    (box :space-evenly false :halign "start" :valign "center"
+    (box :space-evenly false :halign "start"
       (box :class "workspaces" :space-evenly false :halign "start" :valign "center" (literal :content workspaces))
       (label :class "window" :text "${hypr_aw.active_window}" :halign "center")
     )
@@ -34,7 +34,7 @@
         :onclick "pkill gnome-calendar || gnome-calendar" :timeout "10000ms"
         (label  :text "${time.time}  ${time.date}")
       )
-      (systray :class "tray")
+      (systray :class "tray" :icon-size 20)
       (button :class "wallpaper_btn" :onclick "~/.config/waybar/swww_random_image.d" :timeout "10000ms"
         (label :text "🖻 ↺")
       )
@@ -50,7 +50,7 @@
       )
     )
     (box :space-evenly false :halign "end" :valign "center"
-      (label :class "network" :text :hexpand true  "🌐 ⟱:${vnstat.rx.ratestring}, ⟰:${vnstat.tx.ratestring}")
+      (label :class "network" :text "🌐 ⟱:${vnstat.rx.ratestring}, ⟰:${vnstat.tx.ratestring}")
       (label :class "memory" :text " ${round(EWW_RAM.used_mem_perc, 2)}%")
       (label :class "cpu" :text " ${round(EWW_CPU.avg, 2)}%")
       (label :class "disk" :text "🖴 ${round(EWW_DISK["/"].used/(1024*1024*1024), 2)}GiB/${round(EWW_DISK["/"].total/(1024*1024*1024), 2)}GiB")

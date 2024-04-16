@@ -27,8 +27,8 @@ struct WindowInWorkspace
 
     string renderToYuck()
     {
-        return format(`(overlay (label :class "%s" :halign "center" :valign "center" :text "%s")` ~
-                `(label :class "workspace_windows" :text "%s"))`,
+        return format(`(overlay :valign "center" (label :class "%s" :halign "center" :text "%s")` ~
+                `(label :class "workspace_windows" :text "%s" :valign "center"))`,
                 isActive ? "active_workspace" : "workspace", name, windowsCount);
     }
 }
