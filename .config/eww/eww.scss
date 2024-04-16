@@ -49,6 +49,9 @@ $wi:0;
 
 .clock {
     background: wjc(winc());
+    &:active {
+        opacity: 0.5;
+    }
 }
 
 .tray {
@@ -57,10 +60,16 @@ $wi:0;
 
 .wallpaper_btn {
     background: wjc(winc());
+    &:active {
+        opacity: 0.5;
+    }
 }
 
 .pulseaudio {
     background: wjc(winc());
+    &:active {
+        opacity: 0.5;
+    }
 }
 
 .power_btn {
@@ -69,6 +78,9 @@ $wi:0;
     background: wjc(winc());
     padding-left: 5px;
     padding-right: 5px;
+    &:active {
+        opacity: 0.5;
+    }
 }
 
 .network {
