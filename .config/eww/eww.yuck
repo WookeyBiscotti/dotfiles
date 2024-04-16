@@ -10,7 +10,7 @@
   :anchor "top center")
   (mainbar)
 )
-                                  
+
 (defpoll time :interval "1s" `date +'{"time":"%H:%M:%S","date":"%d-%m-%Y"}'`)
 
 (defpoll pamixer :interval "1s" `pamixer --get-volume`)
@@ -23,6 +23,8 @@
 
 (deflisten workspaces `/home/alex/.config/eww/listen_hypr_workspaces.d`)
 
+(deflisten language `/home/alex/.config/eww/listen_hypr_language.d`)
+
 (defwidget mainbar []
   (box :halign "fill"
     (box :space-evenly false :halign "start"
@@ -30,22 +32,26 @@
       (label :class "window" :text "${hypr_aw.active_window}" :halign "center")
     )
     (box :space-evenly false :valign "center" :halign "center"
+      (button :class "language"
+        (label :text "${language}")
+      )
       (button :class "clock"
-        :onclick "pkill gnome-calendar || gnome-calendar" :timeout "10000ms"
+        :onclick "pkill gnome-calendar || gnome-calendar&"
         (label  :text "${time.time}  ${time.date}")
       )
       (systray :class "tray" :icon-size 20)
-      (button :class "wallpaper_btn" :onclick "~/.config/waybar/swww_random_image.d" :timeout "10000ms"
+      (button :class "wallpaper_btn" :onclick "~/.config/waybar/swww_random_image.d" :timeout "10s"
         (label :text "🖻 ↺")
       )
       (eventbox
         :onscroll "~/.config/eww/change_volume.d {}"
-        :timeout "10000ms"
+        :timeout "1s"
+        :onclick "pkill pavucontrol || pavucontrol&"
         (overlay
           (label :class "pulseaudio" :text " ${volume.val}")
         )
       )
-      (button :class "power_btn" :onclick "/home/alex/code/eww/target/release/eww open --toggle powermenu" :timeout "10000ms"
+      (button :class "power_btn" :onclick "/home/alex/code/eww/target/release/eww open --toggle powermenu" :timeout "10s"
         (label :text "")
       )
     )
@@ -76,7 +82,7 @@
 (defwidget powermenu []
   (box :halign "center" :valign "center" :class "powermenu"
     (button :class "powermenu_hibernate"
-      :onclick "systemctl hybrid-sleep"
+      :onclick "systemctl suspend-then-hibernate"
       (box :orientation "v"
         (label :text "Hibernate")
         (label :text "⏾")

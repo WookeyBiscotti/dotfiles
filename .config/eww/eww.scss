@@ -2,8 +2,8 @@
     @return rgba(hsl($h, $s, $l), $a);
 }
 
-@function wjc($i) {
-    @return linear-gradient(90deg, hsla($i*360/13, 60, 30, 1) 0%, hsla(($i+1)*360/13, 60, 30, 1) 100%);
+@function wjc($wi) {
+    @return linear-gradient(90deg, hsla($wi*360/13, 60, 30, 1) 0%, hsla(($wi+1)*360/13, 60, 30, 1) 100%);
 }
 
 * {
@@ -26,62 +26,73 @@
     background: linear-gradient(0deg, rgba(92, 123, 139, 0) 0%, rgba(19, 27, 130, 0.3) 100%);
 }
 
+$wi:0;
+@function winc() {
+    $cwi: $wi;
+    $wi: $wi + 1 !global;
+    @return $cwi;
+}
+
 .workspaces {
     padding-left: 0px;
     padding-right: 0px;
-    background: wjc(0);
+    background: wjc(winc());
 }
 
 .window {
-    background: wjc(1);
+    background: wjc(winc());
+}
+
+.language {
+    background: wjc(winc());
 }
 
 .clock {
-    background: wjc(2);
+    background: wjc(winc());
 }
 
 .tray {
-    background: wjc(3);
+    background: wjc(winc());
 }
 
 .wallpaper_btn {
-    background: wjc(4);
+    background: wjc(winc());
 }
 
 .pulseaudio {
-    background: wjc(5);
+    background: wjc(winc());
 }
 
 .power_btn {
     font-size: 11px;
     transition: none;
-    background: wjc(6);
+    background: wjc(winc());
     padding-left: 5px;
     padding-right: 5px;
 }
 
 .network {
-    background: wjc(7);
+    background: wjc(winc());
 }
 
 .memory {
-    background: wjc(8);
+    background: wjc(winc());
 }
 
 .cpu {
-    background: wjc(9);
+    background: wjc(winc());
 }
 
 .disk {
-    background: wjc(10);
+    background: wjc(winc());
 }
 
 .temperature_cpu {
-    background: wjc(11);
+    background: wjc(winc());
 }
 
 .temperature_gpu {
-    background: wjc(12);
+    background: wjc(winc());
 }
 
 .workspace {
@@ -118,8 +129,8 @@
     background: rgba(0, 0, 0, 0.3);
 }
 
-@function pmc($i) {
-    @return linear-gradient(90deg, hsla($i*360/5, 40, 30, 1) 0%, hsla(($i+1)*360/5, 40, 20, 1) 100%);
+@function pmc($wi) {
+    @return linear-gradient(90deg, hsla($wi*360/5, 40, 30, 1) 0%, hsla(($wi+1)*360/5, 40, 20, 1) 100%);
 }
 
 .powermenu_hibernate {
