@@ -28,15 +28,27 @@ struct Workspace
 
     string renderToYuck()
     {
-        return format(`(overlay (label :class "%s" :halign "center" :valign "center" :text "%s")` ~
-                `(label :class "workspace_windows" :text "%s"))`,
-                isActive ? "active_workspace" : "workspace", name, windowsCount);
+        auto currClass = isActive ? "active_workspace" : "workspace";
+        return format(`
+            (button
+                :class "%s"
+                :valign "center"
+                :halign "center"
+                :timeout "2s"
+                :onclick "`
+                ~ std.path.expandTilde("~/.config/eww/hypr_set_workspace.d") ~ ` %s"
+                    (overlay :valign "center"
+                        (label :class "%s" :halign "center" :text "%s")
+                        (label :class "workspace_windows" :text "%s" :valign "center")
+                    )
+            )
+            `, currClass, name, currClass, name, windowsCount).replace("\n", "");
     }
 }
 
 string renderToYuck(ref Workspace[] ws)
 {
-    string res = `(box :halign "center" :valign "center" :class "workspaces"`;
+    string res = `(box :halign "center" :valign "center" :class "workspaces" `;
     foreach (w; ws)
     {
         res ~= w.renderToYuck();
@@ -82,7 +94,7 @@ void main()
         auto requestType = msg.findSplitBefore(">>")[0];
         if (requestType == "workspace" || requestType == "createworkspace" || requestType == "destroyworkspace" ||
             requestType == "openwindow" || requestType == "closewindow" || requestType == "movewindow" ||
-            requestType == "renameworkspace")
+            requestType == "renameworkspace" || requestType == "activewindow")
         {
             writelnWorkspaces();
         }

@@ -47,15 +47,15 @@ $wi:0;
     background: wjc(winc());
 }
 
+.tray {
+    background: wjc(winc());
+}
+
 .clock {
     background: wjc(winc());
     &:active {
         opacity: 0.5;
     }
-}
-
-.tray {
-    background: wjc(winc());
 }
 
 .wallpaper_btn {

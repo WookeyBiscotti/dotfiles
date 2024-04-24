@@ -35,11 +35,11 @@
       (button :class "language"
         (label :text "${language}")
       )
+      (systray :class "tray" :icon-size 20)
       (button :class "clock"
         :onclick "pkill gnome-calendar || gnome-calendar&"
         (label :text "${time.time}  ${time.date}")
       )
-      (systray :class "tray" :icon-size 20)
       (button :class "wallpaper_btn" :onclick "~/.config/waybar/swww_random_image.d" :timeout "10s"
         (label :text "🖻 ↺")
       )
