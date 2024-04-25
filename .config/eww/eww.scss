@@ -108,16 +108,16 @@ $wi:0;
 }
 
 .workspace {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
     margin-left: 10px;
     margin-right: 10px;
     background: #1f1f1f;
 }
 
 .active_workspace {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
     margin-left: 10px;
     margin-right: 10px;
     background: #585858;
@@ -130,7 +130,7 @@ $wi:0;
     font-weight: bold;
     opacity: 1;
     color: #B5E8E0;
-    margin: 0px 0px 8px 25px;
+    margin: 0px 0px 8px 14px;
     background: rgba(0, 0, 0, 0.5)
 }
 

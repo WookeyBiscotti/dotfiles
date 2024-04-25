@@ -1,24 +1,9 @@
 #!/usr/bin/rdmd
 
+import hyprctl;
+
 import std;
 import core.stdc.stdlib;
-
-string getHyptCtlReply(string req)
-{
-    auto socket = new Socket(AddressFamily.UNIX, SocketType.STREAM);
-
-    string his = to!string(getenv("HYPRLAND_INSTANCE_SIGNATURE"));
-    auto path = "/tmp/hypr/" ~ his ~ "/.socket.sock";
-    socket.connect(new UnixAddress(path));
-
-    socket.send("j/" ~ req);
-
-    char[8192] buffer;
-    auto received = socket.receive(buffer);
-    socket.close();
-
-    return to!string(buffer[0 .. received]);
-}
 
 struct Workspace
 {
@@ -37,8 +22,8 @@ struct Workspace
                 :timeout "2s"
                 :onclick "`
                 ~ std.path.expandTilde("~/.config/eww/hypr_set_workspace.d") ~ ` %s"
-                    (overlay :valign "center"
-                        (label :class "%s" :halign "center" :text "%s")
+                    (overlay :valign "fill"
+                        (label :class "%s" :valign "fill" :text "%s")
                         (label :class "workspace_windows" :text "%s" :valign "center")
                     )
             )
@@ -60,8 +45,8 @@ string renderToYuck(ref Workspace[] ws)
 
 void writelnWorkspaces()
 {
-    auto activeworkspace = parseJSON(getHyptCtlReply("activeworkspace"))["id"].integer;
-    auto workspaces = parseJSON(getHyptCtlReply("workspaces"));
+    auto activeworkspace = parseJSON(getHyprCtlReply("activeworkspace"))["id"].integer;
+    auto workspaces = parseJSON(getHyprCtlReply("workspaces"));
 
     Workspace[] ws;
     foreach (size_t index, ref JSONValue w; workspaces.array)
@@ -79,24 +64,13 @@ void main()
 {
     writelnWorkspaces();
 
-    auto socket = new Socket(AddressFamily.UNIX, SocketType.STREAM);
-
-    string his = to!string(getenv("HYPRLAND_INSTANCE_SIGNATURE"));
-    auto path = "/tmp/hypr/" ~ his ~ "/.socket2.sock";
-    socket.connect(new UnixAddress(path));
-
-    char[1024] buffer;
-    while (true)
-    {
-        auto received = socket.receive(buffer);
-        string msg = to!string(buffer[0 .. received]).findSplitBefore("\n")[0];
-
+    listenHyprSocket((const char[] msg) {
         auto requestType = msg.findSplitBefore(">>")[0];
         if (requestType == "workspace" || requestType == "createworkspace" || requestType == "destroyworkspace" ||
-            requestType == "openwindow" || requestType == "closewindow" || requestType == "movewindow" ||
-            requestType == "renameworkspace" || requestType == "activewindow")
+        requestType == "openwindow" || requestType == "closewindow" || requestType == "movewindow" ||
+        requestType == "renameworkspace" || requestType == "activewindow")
         {
             writelnWorkspaces();
         }
-    }
+    });
 }
