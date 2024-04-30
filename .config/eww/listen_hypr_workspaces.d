@@ -15,25 +15,21 @@ struct Workspace
     {
         auto currClass = isActive ? "active_workspace" : "workspace";
         return format(`
-            (button
+            (button 
                 :class "%s"
-                :valign "center"
-                :halign "center"
                 :timeout "2s"
-                :onclick "`
-                ~ std.path.expandTilde("~/.config/eww/hypr_set_workspace.d") ~ ` %s"
-                    (overlay :valign "fill"
-                        (label :class "%s" :valign "fill" :text "%s")
-                        (label :class "workspace_windows" :text "%s" :valign "center")
-                    )
-            )
-            `, currClass, name, currClass, name, windowsCount).replace("\n", "");
+                :onclick "` ~ std.path.expandTilde("~/.config/eww/hypr_set_workspace.d") ~ ` %s"
+                (label  
+                    :class "%s"
+                    :markup "%s<span baseline_shift=\"superscript\" size=\"small\">%s</span>"
+                )
+            )`, currClass, name, currClass, name, windowsCount).replace("\n", " ");
     }
 }
 
 string renderToYuck(ref Workspace[] ws)
 {
-    string res = `(box :halign "center" :valign "center" :class "workspaces" `;
+    string res = `(box :space-evenly false :valign "center" :halign "center" :class "workspaces"`;
     foreach (w; ws)
     {
         res ~= w.renderToYuck();

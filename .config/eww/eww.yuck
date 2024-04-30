@@ -28,8 +28,8 @@
 (defwidget mainbar []
   (box :halign "fill"
     (box :space-evenly false :halign "start"
-      (box :class "workspaces" :space-evenly false :halign "start" :valign "center" (literal :content workspaces))
-      (label :class "window" :text "${hypr_aw.active_window}" :halign "center")
+      (literal :content workspaces)
+      (label :class "window"  :valign "center" :halign "center" :text "${hypr_aw.active_window}")
     )
     (box :space-evenly false :valign "center" :halign "center"
       (button :class "language"
