@@ -8,6 +8,7 @@ import core.stdc.stdlib;
 struct Workspace
 {
     string name;
+    long id;
     bool isActive;
     long windowsCount;
 
@@ -18,12 +19,14 @@ struct Workspace
             (button 
                 :class "%s"
                 :timeout "2s"
-                :onclick "` ~ std.path.expandTilde("~/.config/eww/hypr_set_workspace.d") ~ ` %s"
-                (label  
+                :onrightclick "/home/alex/code/eww/target/release/eww open --toggle rename_workspace --arg curr_id=%s"
+                :onclick "`
+                ~ std.path.expandTilde("~/.config/eww/hypr_set_workspace.d") ~ ` %s"
+                (label
                     :class "%s"
                     :markup "%s<span baseline_shift=\"superscript\" size=\"small\">%s</span>"
                 )
-            )`, currClass, name, currClass, name, windowsCount).replace("\n", " ");
+            )`, currClass, id, name, currClass, name, windowsCount).replace("\n", " ");
     }
 }
 
@@ -49,6 +52,7 @@ void writelnWorkspaces()
     {
         ws ~= Workspace(
             w["name"].str,
+            w["id"].integer,
             w["id"].integer == activeworkspace,
             w["windows"].integer);
     }

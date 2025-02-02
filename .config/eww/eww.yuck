@@ -6,7 +6,7 @@
   :geometry (geometry :x "0%"
     :y "0%"
     :width "100%"
-    :height "11px"
+    :height "10px"
   :anchor "top center")
   (mainbar)
 )
@@ -29,7 +29,7 @@
   (box :halign "fill"
     (box :space-evenly false :halign "start"
       (literal :content workspaces)
-      (label :class "window"  :valign "center" :halign "center" :text "${hypr_aw.active_window}")
+      (label :class "window" :valign "center" :halign "center" :text "${hypr_aw.active_window}" :limit-width 128)
     )
     (box :space-evenly false :valign "center" :halign "center"
       (button :class "language"
@@ -46,7 +46,7 @@
       (eventbox
         :onscroll "~/.config/eww/change_volume.d {}"
         :timeout "1s"
-        :onclick "pkill pavucontrol || pavucontrol&"
+        :onclick "GSK_RENDERER=gl pkill pavucontrol || GSK_RENDERER=gl pavucontrol&"
         (overlay
           (label :class "pulseaudio" :text " ${volume.val}")
         )
@@ -116,5 +116,26 @@
         (label :text "🗙")
       )
     )
+  )
+)
+
+(defwindow rename_workspace [curr_id]
+  :exclusive false
+  :monitor 0
+  :windowtype "dialog"
+  :stacking "fg"
+  :focusable true
+  :geometry (geometry :x "45%"
+    :y "0%"
+    :width "10%"
+    ; :height "10%"
+  :anchor "top center")
+  (rename_workspace :curr_id curr_id)
+)
+
+(defwidget rename_workspace [curr_id]
+  (box :orientation "v"
+    (label :text "Enter new name for id:${curr_id} workspace:")
+    (input :value "${curr_id}" :onaccept "/home/alex/code/eww/target/release/eww open --toggle rename_workspace; hyprctl dispatch renameworkspace ${curr_id} {}")
   )
 )

@@ -1,208 +1,232 @@
-* {
-    border-radius: 10;
-    font-family: "Ubuntu";
-    font-size: 14px;
-    min-height: 5px;
-    font-weight: bold;
-    margin-bottom: 0px;
-    opacity: 1;
-    color: #B5E8E0;
-    margin-bottom: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-}
-
-window#waybar {
-    background: shade(alpha(@borders, 0.2), 1.25);
-    border-width: 1;
-    border-color: #ffffff;
-    border: solid;
-}
-
-#disk {
-    margin-top: 3px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    transition: none;
-    background: #2d4409;
-}
-
-#temperature.gpu {
-    margin-top: 3px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    transition: none;
-    background: #827215;
-}
-
-#temperature.cpu {
-    margin-top: 3px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    transition: none;
-    background: #444f0e;
-}
-
-#pulseaudio {
-    margin-top: 3px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    transition: none;
-    background: #8a3d10;
-}
-
-@keyframes blink {
-    to {
-        background-color: #BF616A;
-        color: #B5E8E0;
-    }
-}
-
-#cpu {
-    margin-top: 3px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    transition: none;
-    background: #0a4809;
-}
-
-#memory {
-    margin-top: 3px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    transition: none;
-    background: #0a5f32;
-}
-
-#network {
-    margin-top: 3px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    transition: none;
-    background: #0a5b54;
-}
-
-#language {
-    margin-top: 3px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    transition: none;
-    background: #09445a;
-}
-
-#custom-wp {
-    margin-top: 3px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    transition: none;
-    background: #09445a;
-}
-
-#clock {
-    margin-top: 3px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    transition: none;
-    background: #081250;
-}
-
-#window {
-    margin-top: 3px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    transition: none;
-    background: #210854;
-}
-
-#workspaces {
-    margin-top: 3px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    background: #46095a;
-}
-
-#tray {
-    margin-top: 3px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    transition: none;
-    background: #8d6012;
-}
-
-#custom-launcher {
-    margin-top: 3px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    transition: none;
-    background: #161320;
-}
-
-#custom-power {
-    font-size: 15px;
-    margin-top: 3px;
-    margin-bottom: 0px;
-    margin-left: 8px;
-    margin-right: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    transition: none;
-    background: #680808;
-}
-
-#custom-wallpaper {
-    margin-top: 3px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    transition: none;
-    background: #C9CBFF;
-}
-
-#custom-updates {
-    margin-top: 3px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    transition: none;
-    background: #E8A2AF;
-}
-
-#custom-media {
-    margin-top: 3px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    transition: none;
-    background: #F2CDCD;
-}
+ * {
+     border-radius: 10px;
+     font-family: "Ubuntu";
+     font-size: 14px;
+     min-height: 5px;
+     font-weight: bold;
+     margin-bottom: 0px;
+     opacity: 1.75;
+     color: #B5E8E0;
+     margin-bottom: 0px;
+     padding-top: 0px;
+     padding-bottom: 0px;
+     border-width: 1px;
+     border-color: #ffffff;
+     border: solid;
+     /* background: #2d4409; */
+ }
+ 
+ window.wtf {
+     /* background: shade(alpha(@borders, 0.2), 1.25); */
+     border-width: 1px;
+     border-color: #ffffff;
+     border: solid;
+     background: rgba(1, 1, 1, 0.75);
+ }
+ /* wtf {
+     background: rgb(187, 28, 28);
+ }
+ 
+ #wtf {
+     background: rgb(28, 57, 187);
+ }
+ 
+ window#wtf {
+     background: rgb(47, 187, 28);
+ }
+  */
+ /* window.wtf {
+     background: rgb(187, 28, 76);
+ } */
+ /*  
+ window {
+     background: rgb(47, 187, 28);
+ } */
+ 
+ #disk {
+     margin-top: 3px;
+     margin-left: 8px;
+     padding-left: 10px;
+     padding-right: 10px;
+     margin-bottom: 0px;
+     transition: none;
+     background: #2d4409;
+ }
+ 
+ #temperature.gpu {
+     margin-top: 3px;
+     margin-left: 8px;
+     padding-left: 10px;
+     padding-right: 10px;
+     margin-bottom: 0px;
+     transition: none;
+     background: #827215;
+ }
+ 
+ #temperature.cpu {
+     margin-top: 3px;
+     margin-left: 8px;
+     padding-left: 10px;
+     padding-right: 10px;
+     margin-bottom: 0px;
+     transition: none;
+     background: #444f0e;
+ }
+ 
+ #pulseaudio {
+     margin-top: 3px;
+     margin-left: 8px;
+     padding-left: 10px;
+     padding-right: 10px;
+     margin-bottom: 0px;
+     transition: none;
+     background: #8a3d10;
+ }
+ 
+ @keyframes blink {
+     to {
+         background-color: #BF616A;
+         color: #B5E8E0;
+     }
+ }
+ 
+ #cpu {
+     margin-top: 3px;
+     margin-left: 8px;
+     padding-left: 10px;
+     padding-right: 10px;
+     margin-bottom: 0px;
+     transition: none;
+     background: #0a4809;
+ }
+ 
+ #memory {
+     margin-top: 3px;
+     margin-left: 8px;
+     padding-left: 10px;
+     padding-right: 10px;
+     margin-bottom: 0px;
+     transition: none;
+     background: #0a5f32;
+ }
+ 
+ #network {
+     margin-top: 3px;
+     margin-left: 8px;
+     padding-left: 10px;
+     padding-right: 10px;
+     margin-bottom: 0px;
+     transition: none;
+     background: #0a5b54;
+ }
+ 
+ #language {
+     margin-top: 3px;
+     margin-left: 8px;
+     padding-left: 10px;
+     padding-right: 10px;
+     margin-bottom: 0px;
+     transition: none;
+     background: #09445a;
+ }
+ 
+ #custom-wp {
+     margin-top: 3px;
+     margin-left: 8px;
+     padding-left: 10px;
+     padding-right: 10px;
+     margin-bottom: 0px;
+     transition: none;
+     background: #09445a;
+ }
+ 
+ #clock {
+     margin-top: 3px;
+     margin-left: 8px;
+     padding-left: 10px;
+     padding-right: 10px;
+     margin-bottom: 0px;
+     transition: none;
+     background: #081250;
+ }
+ 
+ #window {
+     margin-top: 3px;
+     margin-left: 8px;
+     padding-left: 10px;
+     padding-right: 10px;
+     margin-bottom: 0px;
+     transition: none;
+     background: #210854;
+ }
+ 
+ #workspaces {
+     margin-top: 3px;
+     margin-left: 8px;
+     padding-left: 10px;
+     padding-right: 10px;
+     margin-bottom: 0px;
+     background: #46095a;
+ }
+ 
+ #tray {
+     margin-top: 3px;
+     margin-left: 8px;
+     padding-left: 10px;
+     padding-right: 10px;
+     margin-bottom: 0px;
+     transition: none;
+     background: #8d6012;
+ }
+ 
+ #custom-launcher {
+     margin-top: 3px;
+     margin-left: 8px;
+     padding-left: 10px;
+     padding-right: 10px;
+     margin-bottom: 0px;
+     transition: none;
+     background: #161320;
+ }
+ 
+ #custom-power {
+     font-size: 15px;
+     margin-top: 3px;
+     margin-bottom: 0px;
+     margin-left: 8px;
+     margin-right: 8px;
+     padding-left: 10px;
+     padding-right: 10px;
+     transition: none;
+     background: #680808;
+ }
+ 
+ #custom-wallpaper {
+     margin-top: 3px;
+     margin-left: 8px;
+     padding-left: 10px;
+     padding-right: 10px;
+     margin-bottom: 0px;
+     transition: none;
+     background: #C9CBFF;
+ }
+ 
+ #custom-updates {
+     margin-top: 3px;
+     margin-left: 8px;
+     padding-left: 10px;
+     padding-right: 10px;
+     margin-bottom: 0px;
+     transition: none;
+     background: #E8A2AF;
+ }
+ 
+ #custom-media {
+     margin-top: 3px;
+     margin-left: 8px;
+     padding-left: 10px;
+     padding-right: 10px;
+     margin-bottom: 0px;
+     transition: none;
+     background: #F2CDCD;
+ }
